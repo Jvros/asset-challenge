@@ -55,6 +55,7 @@ I am used to work with current tools in the bank. So I would use Teamcity and uD
 
 
 4- Some real usage:
+(Google API key could be blocked, add your own key :)
 
 Add some shops:
 

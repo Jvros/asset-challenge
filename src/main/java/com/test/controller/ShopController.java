@@ -70,12 +70,6 @@ public class ShopController {
         return shop;
     }
 
-    //Extra
-    //@RequestMapping(method = RequestMethod.GET)
-    /*public Shop getShop(@RequestParam String name){
-        return service.getShopByName(name);
-    }*/
-
     public class ShopNotFoundException extends RuntimeException {}
 
     public class InvalidShopException extends RuntimeException {}
