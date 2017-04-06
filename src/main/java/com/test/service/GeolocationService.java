@@ -7,6 +7,6 @@ import com.test.model.Shop;
  */
 public interface GeolocationService {
 
-    void enrichWithLocation(Shop shop);
+    void enrichWithLocationAsync(Shop shop);
 
 }

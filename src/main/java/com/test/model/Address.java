@@ -3,7 +3,7 @@ package com.test.model;
 /**
  * Created by jose on 05/04/2017.
  */
-public class ShopAddress {
+public class Address {
     private int number;
     private String postCode;
 

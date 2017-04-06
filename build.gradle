@@ -11,11 +11,10 @@ buildscript {
 group 'com.test'
 version '1.0-SNAPSHOT'
 
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
-
-sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -25,7 +24,8 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-hateoas")
     compile("com.jayway.jsonpath:json-path")
+    compile("com.google.maps:google-maps-services:0.1.19")
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

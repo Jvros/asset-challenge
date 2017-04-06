@@ -1,6 +1,7 @@
 package com.test.model;
 
-import org.omg.CORBA.UNKNOWN;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by jose on 05/04/2017.
@@ -10,7 +11,8 @@ public class Location {
     private double lat;
     private double lon;
 
-    public Location(double lat, double lon) {
+    @JsonCreator
+    public Location(@JsonProperty("lat") double lat, @JsonProperty("lon") double lon) {
         this.lat = lat;
         this.lon = lon;
     }

@@ -1,13 +1,16 @@
 package com.test.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.hateoas.ResourceSupport;
+
 /**
  * Created by jose on 05/04/2017.
  */
 
-public class Shop {
+public class Shop  extends ResourceSupport{
     private String name;
-    private String description;
-    private ShopAddress address;
+    private Address address;
     private Location location;
 
     public String getName() {
@@ -18,19 +21,11 @@ public class Shop {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public ShopAddress getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(ShopAddress address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 

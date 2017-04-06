@@ -1,8 +1,10 @@
 package com.test.controller;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.test.TestUtils;
 import com.test.model.Location;
 import com.test.model.Shop;
-import com.test.model.ShopAddress;
-import com.test.service.ShopService;
+import com.test.model.Address;
+import com.test.service.impl.InMemoryShopServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,66 +32,59 @@ public class ShopControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private ShopService shopService;
-
-    private Shop initialiseTestShop(double lat, double lon){
-        Shop testShop = new Shop();
-        testShop.setName("TestShop");
-        testShop.setDescription("TestDescription");
-        testShop.setAddress(new ShopAddress());
-        testShop.getAddress().setNumber(0);
-        testShop.getAddress().setPostCode("12345");
-        testShop.setLocation(new Location(lat,lon));
-        return testShop;
-    }
-
-
-    /*@Test
-    public void getShopReturnsExistingShop() throws Exception {
-        Shop testShop = initialiseTestShop();
-        given(shopService.getShopByName(testShop.getName())).willReturn(testShop);
-
-        //Test if "TestShop" exists
-        this.mockMvc.perform(get("/shops").param("name", testShop.getName()))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$.name").value(testShop.getName()))
-                .andExpect(jsonPath("$.description").value(testShop.getDescription()))
-                .andExpect(jsonPath("$.address.number").value(testShop.getAddress().getNumber()))
-                .andExpect(jsonPath("$.address.postCode").value(testShop.getAddress().getPostCode()));
-
-        //Test that "OtherShop" don't exists
-
-    }*/
-
-    /*@Test
-    public void getShopReturnsNullWhenShopNotExist() throws Exception {
-        Shop testShop = initialiseTestShop();
-
-        given(shopService.getShopByName(testShop.getName())).willReturn(testShop);
-
-        this.mockMvc.perform(get("/shops").param("name", "somethingNotFound"))
-                .andExpect(status().isOk())
-                //.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(content().string(""));
-    }*/
+    private InMemoryShopServiceImpl shopService;
 
     @Test
-    public void testGetRequestWithUserLocation() throws Exception {
-        Shop testShop = initialiseTestShop(1.0,1.0);
-        given(shopService.getShopByLocation(any(Location.class))).willReturn(testShop);
-        //Test if "TestShop" exists
-        this.mockMvc.perform(get("/shops")
-                        .param("lat", String.valueOf(testShop.getLocation().getLat()))
-                        .param("lon",String.valueOf(testShop.getLocation().getLon())))
+    public void putShop() throws Exception {
+        Shop testShop = TestUtils.initialiseTestShop("TestShop", "000000",1.0,1.0);
+        Shop prevTestShop = TestUtils.initialiseTestShop("TestShop", "1111111",1.0,1.0);
+
+        given(shopService.putShop(eq(testShop))).willReturn(prevTestShop);
+        given(shopService.getShop(testShop.getName())).willReturn(testShop);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String string = objectMapper.writeValueAsString(testShop);
+        this.mockMvc.perform(
+                post("/shops/").contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .content(string))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.address.postCode").value(prevTestShop.getAddress().getPostCode()));
+    }
+
+    @Test
+    public void getShop() throws Exception {
+
+    }
+
+    @Test
+    public void listShops() throws Exception {
+    }
+
+    @Test
+    public void getShopGeoLocation() throws Exception {
+        Shop testShop = TestUtils.initialiseTestShop("TestShop", "12345",1.0,1.0);
+
+        given(shopService.getShop(any(Location.class))).willReturn(testShop);
+
+        this.mockMvc.perform(get("/shops/locate")
+                .param("lat", String.valueOf(testShop.getLocation().getLat()))
+                .param("lon",String.valueOf(testShop.getLocation().getLon())))
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value(testShop.getName()))
-                .andExpect(jsonPath("$.description").value(testShop.getDescription()))
                 .andExpect(jsonPath("$.address.number").value(testShop.getAddress().getNumber()))
                 .andExpect(jsonPath("$.address.postCode").value(testShop.getAddress().getPostCode()))
                 .andExpect(jsonPath("$.location.lat").value(testShop.getLocation().getLat()))
                 .andExpect(jsonPath("$.location.lon").value(testShop.getLocation().getLon()));
+    }
+
+
+
+
+
+
+    @Test
+    public void testGetRequestWithUserLocation() throws Exception {
+
 
 
 
@@ -97,19 +92,7 @@ public class ShopControllerTest {
 
     @Test
     public void testPostRequestToSaveShop() throws Exception {
-        Shop testShop = initialiseTestShop(0,0);
-        given(shopService.saveShop(any(Shop.class))).will(invocation -> {
-            Shop newShop = invocation.getArgumentAt(0,Shop.class);
-            newShop.setName("Prev"+newShop.getName());
-            return newShop;
-        });
 
-        this.mockMvc.perform(
-                post("/shops").contentType(MediaType.APPLICATION_JSON_UTF8)
-                    .content("{\"name\": \"TestShop\",\"description\": \"NewDescription\",\"address\": {\"number\": 0,\"postCode\": \"00000\"}}".getBytes(Charset.forName("UTF8"))))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$.name").value("Prev"+testShop.getName()));
     }
 
 
