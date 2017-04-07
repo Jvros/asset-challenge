@@ -1,6 +1,6 @@
-package com.test.service;
+package com.asset.challenge.service;
 
-import com.test.model.Shop;
+import com.asset.challenge.model.Shop;
 
 /**
  * Created by jose on 05/04/2017.

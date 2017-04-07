@@ -1,4 +1,4 @@
-package com.test;
+package com.asset.challenge;
 
 
 import org.springframework.boot.SpringApplication;

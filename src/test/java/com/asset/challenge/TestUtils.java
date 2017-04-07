@@ -1,8 +1,8 @@
-package com.test;
+package com.asset.challenge;
 
-import com.test.model.Address;
-import com.test.model.Location;
-import com.test.model.Shop;
+import com.asset.challenge.model.Shop;
+import com.asset.challenge.model.Address;
+import com.asset.challenge.model.Location;
 
 /**
  * Created by jose on 06/04/2017.

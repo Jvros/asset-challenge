@@ -1,23 +1,22 @@
-package com.test.service.impl;
+package com.asset.challenge.service.impl;
 
+import com.asset.challenge.model.Shop;
+import com.asset.challenge.service.GeolocationService;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.GeocodingApiRequest;
 import com.google.maps.PendingResult;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
-import com.test.model.Location;
-import com.test.model.Shop;
-import com.test.service.GeolocationService;
+import com.asset.challenge.model.Location;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * Created by jose on 05/04/2017.
  */
 @Component
-public class GoogleMapsGeolocationService implements GeolocationService{
+public class GoogleMapsGeolocationService implements GeolocationService {
 
 
     @Autowired

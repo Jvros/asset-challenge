@@ -1,10 +1,10 @@
-package com.test.service.impl;
+package com.asset.challenge.service.impl;
 
 
-import com.test.model.Location;
-import com.test.model.Shop;
-import com.test.service.GeolocationService;
-import com.test.service.ShopService;
+import com.asset.challenge.model.Location;
+import com.asset.challenge.model.Shop;
+import com.asset.challenge.service.GeolocationService;
+import com.asset.challenge.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

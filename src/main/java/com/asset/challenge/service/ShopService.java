@@ -1,7 +1,7 @@
-package com.test.service;
+package com.asset.challenge.service;
 
-import com.test.model.Location;
-import com.test.model.Shop;
+import com.asset.challenge.model.Shop;
+import com.asset.challenge.model.Location;
 
 import java.util.Collection;
 

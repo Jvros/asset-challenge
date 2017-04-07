@@ -1,6 +1,6 @@
-package com.test.controller.handler;
+package com.asset.challenge.controller.handler;
 
-import com.test.controller.ShopController;
+import com.asset.challenge.controller.ShopController;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

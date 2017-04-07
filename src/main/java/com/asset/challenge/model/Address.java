@@ -1,4 +1,4 @@
-package com.test.model;
+package com.asset.challenge.model;
 
 /**
  * Created by jose on 05/04/2017.

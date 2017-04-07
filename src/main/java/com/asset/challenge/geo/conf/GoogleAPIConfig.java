@@ -1,4 +1,4 @@
-package com.test.geo.conf;
+package com.asset.challenge.geo.conf;
 
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;

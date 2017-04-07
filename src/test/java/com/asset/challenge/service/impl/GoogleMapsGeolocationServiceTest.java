@@ -1,8 +1,7 @@
-package com.test.service.impl;
+package com.asset.challenge.service.impl;
 
-import com.test.TestUtils;
-import com.test.model.Shop;
-import com.test.model.Address;
+import com.asset.challenge.TestUtils;
+import com.asset.challenge.model.Shop;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

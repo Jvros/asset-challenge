@@ -1,4 +1,4 @@
-package com.test.model;
+package com.asset.challenge.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

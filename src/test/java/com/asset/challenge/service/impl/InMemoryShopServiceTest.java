@@ -1,11 +1,10 @@
-package com.test.service.impl;
+package com.asset.challenge.service.impl;
 
-import com.test.TestUtils;
-import com.test.model.Location;
-import com.test.model.Shop;
-import com.test.model.Address;
-import com.test.service.GeolocationService;
-import com.test.service.impl.InMemoryShopServiceImpl;
+import com.asset.challenge.model.Shop;
+import com.asset.challenge.service.GeolocationService;
+import com.asset.challenge.TestUtils;
+import com.asset.challenge.model.Location;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -90,8 +89,8 @@ public class InMemoryShopServiceTest {
         this.service.putShop(near);
         this.service.putShop(far);
 
-        assertNotEquals(far.getName(), this.service.getShop(userlocation).getName());
-        assertEquals(near.getName(), this.service.getShop(userlocation).getName());
+        Assert.assertNotEquals(far.getName(), this.service.getShop(userlocation).getName());
+        Assert.assertEquals(near.getName(), this.service.getShop(userlocation).getName());
 
 
     }

@@ -1,10 +1,9 @@
-package com.test.controller;
+package com.asset.challenge.controller;
+import com.asset.challenge.TestUtils;
+import com.asset.challenge.model.Shop;
+import com.asset.challenge.service.impl.InMemoryShopServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.test.TestUtils;
-import com.test.model.Location;
-import com.test.model.Shop;
-import com.test.model.Address;
-import com.test.service.impl.InMemoryShopServiceImpl;
+import com.asset.challenge.model.Location;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +13,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.nio.charset.Charset;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.mockito.BDDMockito.*;
@@ -39,7 +36,7 @@ public class ShopControllerTest {
         Shop testShop = TestUtils.initialiseTestShop("TestShop", "000000",1.0,1.0);
         Shop prevTestShop = TestUtils.initialiseTestShop("TestShop", "1111111",1.0,1.0);
 
-        given(shopService.putShop(eq(testShop))).willReturn(prevTestShop);
+        given(shopService.putShop(any(Shop.class))).willReturn(prevTestShop);
         given(shopService.getShop(testShop.getName())).willReturn(testShop);
 
         ObjectMapper objectMapper = new ObjectMapper();

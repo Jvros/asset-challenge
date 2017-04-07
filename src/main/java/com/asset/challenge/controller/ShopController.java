@@ -1,15 +1,13 @@
-package com.test.controller;
+package com.asset.challenge.controller;
 
-import com.test.model.Location;
-import com.test.model.Shop;
-import com.test.service.ShopService;
-import com.test.service.impl.InMemoryShopServiceImpl;
+import com.asset.challenge.model.Shop;
+import com.asset.challenge.model.Location;
+import com.asset.challenge.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-import java.util.List;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 /**
